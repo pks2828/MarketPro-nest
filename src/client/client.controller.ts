@@ -5,11 +5,14 @@ import { UpdateClientDto } from './dto/update-client.dto';
 
 @Controller('client')
 export class ClientController {
-  constructor(private readonly clientService: ClientService) {}
 
+
+
+  constructor(private readonly clientService: ClientService) {}
+  
   @Post()
-  create(@Body() createClientDto: CreateClientDto) {
-    return this.clientService.create(createClientDto);
+  async create(@Body() createClientDtos: CreateClientDto[]) {
+      return this.clientService.create(createClientDtos);
   }
 
   @Get()
@@ -17,18 +20,21 @@ export class ClientController {
     return this.clientService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientService.findOne(+id);
+  @Get(':term')
+  findOne(@Param('term') term: string) {
+    return this.clientService.findOne(term);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientService.update(+id, updateClientDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateClientDto: UpdateClientDto
+  ) {
+    return this.clientService.update(id, updateClientDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.clientService.remove(+id);
+    return this.clientService.remove(id);
   }
 }
