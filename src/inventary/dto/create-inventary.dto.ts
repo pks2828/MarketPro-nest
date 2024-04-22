@@ -1,4 +1,5 @@
 import { IsString, MinLength, IsNumber, IsPositive, IsOptional, IsInt, IsArray, Min } from "class-validator";
+import { Category } from "../entities/inventary.entity";
 
 export class CreateInventaryDto {
     
@@ -24,6 +25,6 @@ export class CreateInventaryDto {
     tags: string[];
 
     @IsString()
-    category: string;
+    category: Category;
     
 }
