@@ -63,7 +63,7 @@ export class InventaryService {
 
   }
 
- async remove(id: string) {
+  async remove(id: string) {
     const inventary = await this.findOne(id);
     
     if (!inventary) {
@@ -75,7 +75,7 @@ export class InventaryService {
     await this.inventaryRepository.remove(inventary);
     
     return `ID ${inventaryId} removed successfully`;
-}
+  }
 
 
 
